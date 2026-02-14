@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3b340dvrh437"]
+
+[ext_resource type="PackedScene" uid="uid://c2y8v76lh0io6" path="res://Assets/Scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c6wsx85exehkw" path="res://icon.svg" id="2_0xm2m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ig7tw"]
+distance = -1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(125, 129)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+position = Vector2(-2, 75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -24)
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="Area2D3" type="StaticBody2D" parent="."]
+position = Vector2(-2, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(-17, -188)
+rotation = -3.2724924
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["danger"]]
+position = Vector2(-57, -42)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" groups=["danger"]]
+position = Vector2(3.8146973e-06, 1.0000038)
+scale = Vector2(0.3046875, 0.296875)
+texture = ExtResource("2_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["danger"]]
+shape = SubResource("CircleShape2D_0xm2m")
+
+[node name="Area2D2" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
+position = Vector2(192, -78)
+texture = ExtResource("2_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(190.5, -79.5)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
