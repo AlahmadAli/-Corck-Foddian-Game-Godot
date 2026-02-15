@@ -11,6 +11,8 @@ var fall_gravity: float = 2000
 var debug_ray_start: Vector2
 var debug_ray_end: Vector2
 var show_debug_ray: bool = false
+var tumbling = false
+var is_grounded = null
 
 func _physics_process(delta):
 	# Cap the speed
@@ -82,8 +84,18 @@ func create_raycast():
 	return result
 
 
-func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("danger"):
+func _on_hurtbox_area_entered(area: Area2D) -> void: # Add danger group to objects and give them hitbox area
+	if area.is_in_group("danger") and is_grounded == false:
 		gravity_scale = fall_gravity
-	print('bam')
-		
+		#play tumbling animation
+
+func _on_floor_check_body_entered(body: Node2D) -> void:
+	if body.is_in_group("floor") or body is StaticBody2D:
+		is_grounded = true
+		print("Touching ground")
+
+
+func _on_floor_check_body_exited(body: Node2D) -> void:
+	if body.is_in_group("floor") or body is StaticBody2D:
+		is_grounded = false
+		print("Left ground")
