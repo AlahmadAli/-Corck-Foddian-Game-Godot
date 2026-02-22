@@ -2,7 +2,7 @@ extends RigidBody2D
 
 # Adjust this value to control the push strength
 @export var push_force: float = 200.0
-@export var max_force: float = 400
+@export var max_force: float = 600
 # Maximum speed the character can reach
 @export var max_speed: float = 400
 # Raycast distance
@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var distance = global_position.distance_to(mouse_pos)
 	
-	push_force = clamp(distance, 0.0, max_force)
-	push_force = 50 + 90*sqrt(push_force)
+	push_force = clamp(distance*1.4, 0.0, max_force)
+	push_force =  90*sqrt(push_force)
 	
 func _draw():
 	if show_debug_ray:
