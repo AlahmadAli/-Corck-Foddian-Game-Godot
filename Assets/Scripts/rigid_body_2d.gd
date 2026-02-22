@@ -21,6 +21,7 @@ func _physics_process(delta):
 		linear_velocity = linear_velocity.normalized() * max_speed
 	
 func _process(delta: float) -> void:
+	#$"../Camera2D".global_position = global_position
 	var mouse_pos = get_global_mouse_position()
 	var distance = global_position.distance_to(mouse_pos)
 	
@@ -41,18 +42,21 @@ func _input(event):
 			create_raycast()
 			
 func push_away_from_mouse():
-	# Get mouse position in world coordinates
 	var mouse_pos = get_global_mouse_position()
-	
-	# Get character position
 	var character_pos = global_position
-	
-	# Calculate direction from mouse to character (away from mouse)
 	var push_direction = (character_pos - mouse_pos).normalized()
 	
+	# Kill current velocity
 	linear_velocity = linear_velocity * 0.5
-	# Apply impulse in that direction
-	apply_central_impulse(push_direction * push_force)
+	
+	# Smoothly build up force over time using a tween
+	var tween = create_tween()
+	tween.tween_method(
+		func(force): apply_central_force(push_direction * force),
+		0,
+		push_force * 4,
+		0.065  # Duration in seconds
+	)
 
 func create_raycast():
 	var mouse_pos = get_global_mouse_position()
