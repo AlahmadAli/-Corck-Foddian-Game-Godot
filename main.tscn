@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c6wsx85exehkw" path="res://icon.svg" id="2_0xm2m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ig7tw"]
-distance = -1.0
+normal = Vector2(-0.19186592, -0.9814212)
+distance = -13.024791
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
 
@@ -13,19 +14,38 @@ size = Vector2(125, 129)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Area2D" type="StaticBody2D" parent="."]
+[node name="debugwalls" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="debugwalls"]
 position = Vector2(-2, 75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-4, -24)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debugwalls/Area2D"]
+position = Vector2(418, -103)
+rotation = 4.9008846
 shape = SubResource("WorldBoundaryShape2D_ig7tw")
 
-[node name="Area2D3" type="StaticBody2D" parent="."]
+[node name="Area2D4" type="StaticBody2D" parent="debugwalls"]
+position = Vector2(-2, 75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debugwalls/Area2D4"]
+position = Vector2(11.999999, 22)
+rotation = 0.15358898
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="Area2D3" type="StaticBody2D" parent="debugwalls"]
 position = Vector2(-2, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
-position = Vector2(-17, -188)
-rotation = -3.2724924
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debugwalls/Area2D3"]
+position = Vector2(-302, -90.99999)
+rotation = -4.5291295
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="Area2D5" type="StaticBody2D" parent="debugwalls"]
+position = Vector2(-22, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debugwalls/Area2D5"]
+position = Vector2(43.33, -315.9)
+rotation = -3.021165
 shape = SubResource("WorldBoundaryShape2D_ig7tw")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=["danger"]]

@@ -37,7 +37,8 @@ script = ExtResource("1_7dd06")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
 sprite_frames = SubResource("SpriteFrames_w3t24")
-frame_progress = 0.59860104
+autoplay = "default"
+frame_progress = 0.52669734
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
 position = Vector2(24, -26)
