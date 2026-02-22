@@ -18,7 +18,8 @@ size = Vector2(125, 129)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.03, 1.03)
-position_smoothing_speed = 100.0
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 
 [node name="debugwalls" type="Node2D" parent="."]
 

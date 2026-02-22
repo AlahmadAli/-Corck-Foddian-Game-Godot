@@ -21,12 +21,12 @@ func _physics_process(delta):
 		linear_velocity = linear_velocity.normalized() * max_speed
 	
 func _process(delta: float) -> void:
-	#$"../Camera2D".global_position = global_position
+	$"../Camera2D".global_position = global_position
 	var mouse_pos = get_global_mouse_position()
 	var distance = global_position.distance_to(mouse_pos)
 	
 	push_force = clamp(distance, 0.0, max_force)
-	push_force = push_force*push_force/100
+	push_force = 50 + 90*sqrt(push_force)
 	
 func _draw():
 	if show_debug_ray:
@@ -47,14 +47,14 @@ func push_away_from_mouse():
 	var push_direction = (character_pos - mouse_pos).normalized()
 	
 	# Kill current velocity
-	linear_velocity = linear_velocity * 0.5
+	linear_velocity = linear_velocity * 0.2
 	
 	# Smoothly build up force over time using a tween
 	var tween = create_tween()
 	tween.tween_method(
 		func(force): apply_central_force(push_direction * force),
 		0,
-		push_force * 4,
+		push_force * 6,
 		0.065  # Duration in seconds
 	)
 
