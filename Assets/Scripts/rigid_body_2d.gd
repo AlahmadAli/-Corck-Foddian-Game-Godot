@@ -46,7 +46,7 @@ var is_grounded = null
 
 #############
 
-############# make minimum speed lower, it feels too fast. Possibly change max speed if needed 
+############# make minimum speed lower, it feels too fast. Possibly change max speed if needed #
 
 
 
